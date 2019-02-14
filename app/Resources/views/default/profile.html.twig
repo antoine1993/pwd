@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block li %}
+    {% if session == [] %}
+        <li><a href={{ path('fos_user_security_login') }}>Se connecter</a></li>
+        <li><a href={{ path('fos_user_registration_register') }}>S'inscrire</a></li>
+    {% else %}
+        <li><a href={{ path('fos_user_security_logout') }}>Se déconnecter</a></li>
+        <li><a href={{ path('profile') }}>Profile</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    {% if profile == [] %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="styled-heading">
+                        <h3>Mon profile :</h3>
+                        <div class="col-md-12">
+                            <a href={{ path('fos_user_security_login') }} >Connectez vous !</a>
+                        </div>
+                        <div class="col-md-12">
+                            <a href={{ path('fos_user_registration_register') }}>Inscrivez vous !</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="styled-heading">
+                        <h3>Mon profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row justify-content-center">
+                    <p>Nom: {{ profile.Username }}</p>
+                </div>
+                <div class="row justify-content-center">
+                    <p>Email: {{ profile.Email }}</p>
+                </div>
+                <div class="row justify-content-center">
+                    {% if profile.Roles.0 == 'ROLE_SUPER_ADMIN' %}
+                        <p>Role: Administrateur</p>
+                    {% else %}
+                        <p>Role: Utilisateur</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'default/admin/base.html.twig' %}
+
+
+{% block body %}
+    <!-- MAIN CONTENT-->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h2 class="title-1 m-b-25">Avis User</h2>
+                        <div class="table-responsive table--no-card m-b-40">
+                            <table class="table table-borderless table-striped table-earning">
+                                <thead>
+                                <tr>
+                                    <th>Commentaire</th>
+
+
+
+                                    <th>Update</th>
+                                    <th class="text-right">Supprimer</th>
+
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% if avis_user==[] %}
+                                <p> Il n'y a pas de commentaire.</p>
+                                {% else %}
+
+
+                                    {% for avis_users in avis_user %}
+                                    <tr>
+                                        <!--<td>{{ avis_users.id }}</td>-->
+                                        <td>{{ avis_users.comment }}</td>
+
+
+
+
+
+
+                                        <td><a href={{ path('commentUpdate',{ 'id': avis_users.id }) }}><button type="button" class="btn btn-success">Update</button></a></td>
+
+
+                                    <td class="text-right"><a href={{ path('commentDelete',{ 'id': avis_users.id }) }}><button type="button" class="btn btn-danger">Supprimer</button></a></td>
+                                    <td></td>
+
+                                </tr>
+                                    {% endfor %}
+
+                                {% endif %}
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- END MAIN CONTENT-->
+{% endblock %}

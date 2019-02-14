@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="banner-bottom-w3layouts py-lg-5 py-3">
+        <div class="container">
+            <div class="inner-sec-w3ls-agileits py-lg-5 py-3">
+                <h4 class="sub-tittle text-uppercase text-center"></h4>
+                <h3 class="tittle text-center mb-lg-5 mb-3">PC GAMES</h3>
+                <ul class="grid cs-style-5 row">
+
+
+                        <tbody>
+
+                        {% if pc==[] %}
+                        <p> Il n'y a pas de jeu.</p>
+                        {% else %}
+
+                        {% for pcs in pc %}
+                    <li class="grid-info-img">
+                        <figure>
+                            <img src="images/{{ pcs.Gallery.image}}" class="img-fluid" alt="img03" width="620" height="500">
+                            <figcaption>
+                                <h3>{{ pcs.Gallery.title }}</h3>
+
+                                <a href={{ path('fiche',{ 'id': pcs.Gallery.id }) }}>Details</a>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    {% endfor %}
+                    {% endif %}
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
